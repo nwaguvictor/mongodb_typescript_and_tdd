@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "moduleResolution": "node",
+    "noUnusedParameters": false,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "noImplicitAny": false,
+    "module": "CommonJS",
+    "strict": true,
+    "rootDir": "./",
+    "outDir": "./build",
+    "baseUrl": "./"
+  }
+}
