@@ -42,12 +42,12 @@ describe('Mongodb Connection', () => {
   describe('Update', () => {
     let user: any;
     beforeEach(async () => {
-      user = new User({ name: 'Alex' });
+      user = new User({ name: 'Alex', postCount: 0 });
       await user.save();
     });
 
     it('uses model instance set and save methods to update a record', async () => {
-      user.name = 'Mike';
+      user.set({ name: 'Mike' });
       const updatedUser = await user.save();
       expect(updatedUser.name).toBe('Mike');
     });
@@ -62,6 +62,12 @@ describe('Mongodb Connection', () => {
       await User.findByIdAndUpdate(user._id, { name: 'Uche' });
       const foundUser = await User.findOne({ _id: user._id });
       expect(foundUser?.name).toBe('Uche');
+    });
+
+    it('increments user postCount by 1', async () => {
+      await User.updateMany({ name: 'Alex' }, { $inc: { postCount: 1 } });
+      const foundUser = await User.findOne({ name: 'Alex' });
+      expect(foundUser?.postCount).toBe(1);
     });
   });
 
