@@ -1,14 +1,10 @@
 import mongoose from 'mongoose';
 import { User } from '../../src/models/user.model';
 import { connectDb } from '../../src/config/db';
-import dotenv from 'dotenv';
-dotenv.config();
-
-const { MONGODB_URI } = process.env;
 
 describe('Mongodb Connection', () => {
   beforeAll(async () => {
-    await connectDb(MONGODB_URI!);
+    await connectDb('mongodb://localhost/test_db');
   });
   afterAll(async () => {
     await mongoose.connection.close();
