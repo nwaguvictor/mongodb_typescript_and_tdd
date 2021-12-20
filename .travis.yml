@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 16
+dist: trusty
+env:
+  - MONGODB_URI="mongodb://localhost:27017/test_db"
+services:
+  - mongodb
+install:
+  - yarn intall
+script:
+  - yarn build
+  - sleep 3
+  - yarn test
